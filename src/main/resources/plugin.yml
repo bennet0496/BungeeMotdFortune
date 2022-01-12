@@ -1,0 +1,4 @@
+name: BungeeFortunePlugin
+main: de.becker_dd.bennet.bungeefortune.BungeeFortunePlugin
+version: 1.0
+author: bennet@becker-dd.de
