@@ -3,9 +3,10 @@
 
 name: Release Artifact
 
-on:
-  release:
-    types: [created]
+on: 
+  push:
+    tags:
+    - '*'
 
 jobs:
   build:
