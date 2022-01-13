@@ -48,10 +48,13 @@ public class ConfigProviderSingelton {
           List.of(""))) {
         parseFile(path);
       }
+
+      System.out.print(String.format("[BungeeFortunePlugin] read %d fortunes", fortunes.size()).replace('\n', ' '));
       for (String path : ConfigProviderSingelton.getConfig().get("iconPaths",
           List.of(""))) {
         walkImageDir(path);
       }
+      System.out.print(String.format("[BungeeFortunePlugin] read %d icons", icons.size()));
     } catch (IOException e) {
       //ignore
     }
@@ -109,6 +112,18 @@ public class ConfigProviderSingelton {
 
   public static Configuration setConfig(Configuration config) {
     instance.applicationConfig = config;
+    System.out.print(String.format(
+        "[BungeeFortunePlugin] Config updated ("
+            + "fortunePaths=list#%d, "
+            + "appendFortune=%b, "
+            + "fortuneColor=%s, "
+            + "maxFortuneLength=%d, "
+            + "iconPaths=list#%d)%n",
+        config.getStringList("fortunePaths").size(),
+        config.getBoolean("appendFortune"),
+        config.getString("fortuneColor"),
+        config.getInt("maxFortuneLength"),
+        config.getStringList("iconPaths").size()).replace('\n', ' '));
     instance.update();
     return instance.applicationConfig;
   }

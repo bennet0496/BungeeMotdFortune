@@ -11,20 +11,18 @@ import net.md_5.bungee.config.YamlConfiguration;
 public class BungeeFortunePlugin extends Plugin {
   @Override
   public void onEnable() {
-    // You should not put an enable message in your plugin.
-    // BungeeCord already does so
-    getLogger().info("Yay! It loads!");
-
     Configuration configuration = null;
     try {
       configuration = ConfigurationProvider
           .getProvider(YamlConfiguration.class)
           .load(new File(getDataFolder(), "config.yml"));
     } catch (IOException e) {
+      getLogger().info("Couldn't load Fortune-Config. Writing default!");
       configuration = new Configuration();
 
       configuration.set("fortunePaths", List.of("/usr/share/games/fortunes/fortunes"));
       configuration.set("appendFortune", true);
+      configuration.set("fortuneColor", "gray");
       configuration.set("maxFortuneLength", 50);
       configuration.set("iconPaths", List.of(getDataFolder().getAbsolutePath() + "/images"));
 
@@ -47,5 +45,7 @@ public class BungeeFortunePlugin extends Plugin {
 
     getProxy().getPluginManager().registerListener(this, new PingListener());
     getProxy().getPluginManager().registerCommand(this, new FortuneCommand("fortune"));
+
+    getLogger().info("Initialization done");
   }
 }
