@@ -65,4 +65,12 @@
     </dependency>
   </dependencies>
 
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>bennet0496</name>
+      <url>https://maven.pkg.github.com/bennet0496/BungeeMotdFortune</url>
+    </repository>
+  </distributionManagement>
+
 </project>
